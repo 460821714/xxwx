@@ -15,7 +15,7 @@ a { text-decoration:none; color:#009bd8 }
 .pos-r{ position:relative;}
 .hide{ display:none;}
 
-.login-aside{width:320px; height:380px; z-index:9999999; border-radius:5px; margin:80px auto;};
+.login-aside{width:320px; height:450px; z-index:9999999; border-radius:5px; margin:80px auto;};
 
 .error-box{
 color:#f7ccc8;
@@ -43,7 +43,7 @@ margin-bottom:10px;
 }
 #o-box-up,#o-box-down {
     width:320px;
-    height:380px;
+    height:450px;
     position:absolute;
 	border-radius:5px;
 
@@ -72,11 +72,11 @@ margin-bottom:10px;
   -mis-box-shadow:1px 1px 1px #dfe4e8 inset;
  }
  
- .yzm{ width:112px;}
+ .yzm{ width:80px;}
  .yzm-img{
-	 position:absolute;
-	 left:130px; 
-	 top:30px; 
+	 position:relative;
+	 left:0px; 
+	 top:0px; 
 	 cursor:pointer;}
 
 .btn-login{

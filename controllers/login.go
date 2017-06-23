@@ -3,46 +3,44 @@ package controllers
 import (
 	"xxwx/models"
 
-	"errors"
-	"fmt"
-
 	"github.com/dchest/captcha"
 )
 
-type LoginController struct {
-	//重写 beego.Controller
-	BaseControllers
-}
-
-const (
-	x1 = iota
-	x2 = iota
-	x3 = iota
+var (
+	capId string
 )
 
-func (login *LoginController) Get() {
-	err := errors.New("emit macho dwarf:elf herder corrupted")
-	if err != nil {
-		fmt.Print(err)
-	}
-	fmt.Print("x1:", x1)
-	fmt.Print("x2:", x2)
-	fmt.Print("x3:", x3)
-	//capId := captcha.NewLen(4)
-	//login.Data["CapId"] = capId
-	login.TplName = "index.html"
+type LoginController struct {
+	BaseController
 }
-func (login *LoginController) Post() {
-	user := login.Input().Get("username")
-	passwd := login.Input().Get("password")
-	User, _ := models.Login(user, passwd)
-	if User != nil {
-		capId := captcha.NewLen(4)
-		login.Data["CapId"] = capId
-		login.TplName = "index.html"
+
+func (c *LoginController) Get() {
+	capId = captcha.NewLen(4)
+	c.Data["CapId"] = capId
+	c.Lay_tpl()
+
+}
+
+func (c *LoginController) Post() {
+	u_name := c.Input().Get("username")
+	u_pass := c.Input().Get("password")
+	u_yzm := c.Input().Get("yzm")
+	if captcha.VerifyString(capId, u_yzm) {
+		us, _ := models.Login(u_name, u_pass)
+		if us != nil {
+			c.TplName = "index.html"
+		} else {
+			c.Data["Err"] = "用户名或密码错误，请重试"
+			c.Lay_tpl()
+		}
 	} else {
-		login.Data["Err"] = "1"
-		login.TplName = "login.html"
+		c.Data["Err"] = "验证码错误，请重试"
+		c.Lay_tpl()
 	}
 
+}
+
+func (c *LoginController) Lay_tpl() {
+	c.Layout = "login.html"
+	c.TplName = "login-captcha.html"
 }

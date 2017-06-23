@@ -1,13 +1,9 @@
-package utils
+package config
 
-import (
-
-	"github.com/astaxie/beego"
-)
+import "github.com/astaxie/beego"
 
 var (
-	Mysql_url string //数据库连接
-	RunMode   string //运行模式
+	Mysql_url string //数据库链接
 )
 
 func init() {

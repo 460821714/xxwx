@@ -3,7 +3,7 @@ package models
 import "github.com/astaxie/beego/orm"
 
 type User struct {
-	Id           int `orm:"auto"`
+	Id           int
 	Name, Passwd string
 	Total_amount float64
 	Permission   int

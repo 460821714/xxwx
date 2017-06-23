@@ -4,8 +4,8 @@
 <head>
   <title>xx管理后台</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <link href=" static/css/login.css" rel="stylesheet" rev="stylesheet" type="text/css" media="all">
-  <script src="static/js.login.js"></script>
+  <link href=" ../static/css/login.css" rel="stylesheet" rev="stylesheet" type="text/css" media="all">
+  <script src="../static/js.login.js"></script>
   <style type="text/css">
   
         #alertMsg {
@@ -53,11 +53,10 @@
 
 <body>
   <div class="login-aside">
-    <form method="post"class="registerform" action="/">
+    <form method="post"class="registerform" action="    ">
     <div id="o-box-up"></div>
     <div id="o-box-down">
       <div class="fm-item">
-          {{dateformat.Time""2006-01-06"}}
           <label class="form-label">登录账号:</label>
           <input type="text" value="输入账号" maxlength="10" id="username" name="username" class="i-text"  onfocus="if(this.value == '输入账号') this.value='';" onblur="if(this.value =='') this.value='输入账号';">
       </div>
@@ -65,10 +64,12 @@
           <label class="form-label">登录密码:</label>
           <input type="password" value="输入密码" maxlength="10" id="password" name="password" class="i-text"  onfocus="if(this.value == '输入密码') this.value='';" onblur="if(this.value =='') this.value='输入密码';">
       </div>
-      <div class="fm-item">
+      <div class="fm-item pos-r" >
           <label class="form-label">验证码:</label>
-          <input type="text" value="输入验证码" maxlength="100" id="yzm" name="yzm" class="i-text"  onfocus="if(this.value == '输入验证码') this.value='';" onblur="if(this.value =='') this.value='输入验证码';">
-          <img src="/captcha/{{.CapId}}.png" class="yzm-img">
+          <input type="text" value="验证码" maxlength="4" id="yzm" name="yzm" class="i-text yzm"  onfocus="if(this.value == '验证码') this.value='';" onblur="if(this.value =='') this.value='验证码';">
+         <div class="ui-form-explain">
+                <img src="/captcha/{{.CapId}}.png" class="yzm-img">         
+            </div>
       </div>
       <div class="fm-item">
         <label for="logonId" class="form-label"></label>
@@ -190,7 +191,7 @@
 
 
         {{if .Err}}
-        alertMsg("用户名或密码错误，请重试",0);
+        alertMsg("{{.Err}}",0);
         {{end}}
 
   </Script>
